@@ -15,7 +15,6 @@ Usage (12 values; no target IP or SSH password):
   bash install.sh PANEL_A TOKEN_A NODE_ID_A DOMAIN_A EMAIL_A CF_API_A \
     PANEL_B TOKEN_B NODE_ID_B DOMAIN_B EMAIL_B CF_API_B
 
-Run with no arguments for interactive prompts (tokens are hidden while typing).
 USAGE
 }
 
@@ -29,26 +28,9 @@ case "${ID:-}" in
 esac
 command -v apt-get >/dev/null 2>&1 || die 'apt-get is required.'
 
-if [[ $# -eq 0 ]]; then
-    printf 'Panel A URL: '; IFS= read -r PANEL_A
-    read -r -s -p 'Panel A token: ' TOKEN_A; printf '\n'
-    printf 'Panel A node ID: '; IFS= read -r NODE_ID_A
-    printf 'Panel A domain: '; IFS= read -r DOMAIN_A
-    printf 'Panel A email: '; IFS= read -r EMAIL_A
-    read -r -s -p 'Panel A Cloudflare API token: ' CF_API_A; printf '\n'
-    printf 'Panel B URL: '; IFS= read -r PANEL_B
-    read -r -s -p 'Panel B token: ' TOKEN_B; printf '\n'
-    printf 'Panel B node ID: '; IFS= read -r NODE_ID_B
-    printf 'Panel B domain: '; IFS= read -r DOMAIN_B
-    printf 'Panel B email: '; IFS= read -r EMAIL_B
-    read -r -s -p 'Panel B Cloudflare API token: ' CF_API_B; printf '\n'
-elif [[ $# -eq 12 ]]; then
-    PANEL_A="$1"; TOKEN_A="$2"; NODE_ID_A="$3"; DOMAIN_A="$4"; EMAIL_A="$5"; CF_API_A="$6"
-    PANEL_B="$7"; TOKEN_B="$8"; NODE_ID_B="$9"; DOMAIN_B="${10}"; EMAIL_B="${11}"; CF_API_B="${12}"
-else
-    usage
-    exit 2
-fi
+[[ $# -eq 12 ]] || { usage; die "Expected exactly 12 arguments, received $#"; }
+PANEL_A="$1"; TOKEN_A="$2"; NODE_ID_A="$3"; DOMAIN_A="$4"; EMAIL_A="$5"; CF_API_A="$6"
+PANEL_B="$7"; TOKEN_B="$8"; NODE_ID_B="$9"; DOMAIN_B="${10}"; EMAIL_B="${11}"; CF_API_B="${12}"
 
 for name in PANEL_A TOKEN_A NODE_ID_A DOMAIN_A EMAIL_A CF_API_A PANEL_B TOKEN_B NODE_ID_B DOMAIN_B EMAIL_B CF_API_B; do
     [[ -n "${!name}" ]] || die "$name must not be empty."
