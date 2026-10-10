@@ -1,4 +1,4 @@
-# Hysteria22 双节点部署器
+# Hy2 双节点部署器
 
 从原 `ansible-main/Hysteria22` 项目提取的双 HY2 节点部署脚本。它直接在目标 VPS 上运行，不再通过 SSH 连接另一台机器，因此不需要目标 VPS 的 IP 和 SSH 密码，也不需要 Ansible 控制端。
 
@@ -47,7 +47,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/krililrify/hy2dual/main/inst
 
 ## 上传到 GitHub
 
-请使用公开仓库 `krililrify/hy2dual`，把 `install.sh` 和 `README.md` 放在仓库根目录，然后推送到 `main` 分支。若使用其他仓库名或账号，请相应修改上面的 `raw.githubusercontent.com` 地址。
+请使用公开仓库 `krililrify/hy2dual`，把 `install.sh` 和 `README.md` 放在仓库根目录，然后推送到 `主分支` 分支。若使用其他仓库名或账号，请相应修改上面的 `raw.githubusercontent.com` 地址。
 
 从本地仓库目录执行：
 
